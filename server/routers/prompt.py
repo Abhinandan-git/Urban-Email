@@ -24,13 +24,14 @@ def get_all_mails(limit: Optional[int] = Query(7)) -> List[dict]:
 @router.post("/generate", status_code=status.HTTP_201_CREATED)
 def create_mail(prompt: PromptModel) -> dict:
   try:
-    response = client.agents.complete(
-      agent_id=AGENT_ID,
-      messages=[{
-        "role": "user",
-        "content": prompt.prompt
-      }]
-    )
-    return { "response": response.choices[0].message.content }
+    # response = client.agents.complete(
+    #   agent_id=AGENT_ID,
+    #   messages=[{
+    #     "role": "user",
+    #     "content": prompt.prompt
+    #   }]
+    # )
+    # return { "response": response.choices[0].message.content }
+    return {"response": "Working\nWorking"}
   except Exception as err:
     raise HTTPException(status_code=500, detail=f"Error generating response: {str(err)}")
