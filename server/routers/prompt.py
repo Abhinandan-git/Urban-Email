@@ -1,9 +1,12 @@
+import os, sys
+
+sys.path.append(os.path.abspath('../'))
+
 from typing import List, Optional
 from fastapi import APIRouter, Query, status, HTTPException
-from pydantic import BaseModel
 from mistralai import Mistral
+from models import PromptModel
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
@@ -13,9 +16,6 @@ AGENT_ID = os.environ['LLM_AGENT_ID']
 router = APIRouter(tags=["prompt"])
 
 client = Mistral(api_key=LLM_API_KEY)
-
-class PromptModel(BaseModel):
-  prompt: str
 
 @router.post("/mails", status_code=status.HTTP_200_OK)
 def get_all_mails(limit: Optional[int] = Query(7)) -> List[dict]:
