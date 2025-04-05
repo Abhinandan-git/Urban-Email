@@ -1,12 +1,12 @@
 import React from 'react'
+import './MailItem.css'
 
 const MailItem = (mail) => {
 	return (
 		<div className='mail'>
-			<h1>{mail.sender}</h1>
-			<h2>{mail.reciever}</h2>
-			<h2>{mail.title}</h2>
-			<p>{mail.mail}</p>
+			<span className='mail-title'>{mail.title}</span>
+			<span className='sender'>&lt; {mail.sender} &gt;</span>
+			<div className='short-mail'>{mail.mail.slice(0, 60).trimEnd()}</div>
 		</div>
 	)
 }
